@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	public float speedX;
 
 	[Header("目前的水平方向")]
-	public float horizontalDirection;//數值會在 -1~1之間
+	public float horizontalDirection; //數值會在 -1~1之間
 
 	const string HORiZONTAL = "Horizontal";
 
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 	//目前垂直速度
 	float speedY;
 
-	[Header("最大水平速度")]
+	[Header("最大水平速度")] //讓水平速度保持在一定的範圍內
 	public float maxSpeedX;
 
 	public void ControlSpeed() {
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour {
 	
 	}
 
-	[Header("垂直向上推力")]
+	[Header("垂直向上推力")] //按空白鍵會往上跳(會無限往上跳)
 	public float yForce;
 
 	public bool JumpKey {
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	[Header("感應地板的距離")]
+	[Header("感應地板的距離")] //偵測到地板才可以往上跳
 	[Range(0, 0.5f)]
 	public float distance;
 
@@ -64,8 +64,8 @@ public class Player : MonoBehaviour {
 		get{
 			Vector2 start = groundCheck.position;
 			Vector2 end = new Vector2(start.x, start.y - distance);
-			Debug.DrawLine(start, end, Color.blue);
-			grounded = Physics2D.Linecast(start, end, groundLayer);
+			Debug.DrawLine(start, end, Color.blue); //為了讓開發者能看到線
+			grounded = Physics2D.Linecast(start, end, groundLayer); //實際偵測
 			return grounded;
 		}
 	}
